@@ -1,0 +1,19 @@
+---
+
+# automate ssh 
+pi_image_setup_ssh: true
+
+# setup bluetooth
+pi_image_setup_bt: false
+
+# setup wlan
+pi_image_setup_wlan: false
+
+# image stuff
+
+pi_image_url: https://downloads.raspberrypi.org/raspbian_lite_latest
+pi_image_dir:  /tmp/pi_os
+pi_image_name: raspbian_lite_latest
+
+pi_image_boot_mount: /tmp/pi_image/boot
+pi_image_rootfs_mount:  /tmp/pi_image/rootfs

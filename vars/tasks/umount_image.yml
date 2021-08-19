@@ -1,0 +1,14 @@
+---
+
+#umount $PI_BOOT_MOUNT
+#umount $PI_OS_MOUNT
+
+- name: Unmount the boot volume
+  ansible.posix.mount:
+    path: {{ pi_image_boot_mount }}
+    state: unmounted
+
+- name: Unmount the rootfs volume
+  ansible.posix.mount:
+    path: {{ pi_image_rootfs_mount }}
+    state: unmounted
