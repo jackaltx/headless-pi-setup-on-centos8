@@ -5,3 +5,4 @@
 - include: mount_image.yml
 - include: enable_ssh.yml
 - include: umount_image.yml
+- include: clean_up.yml

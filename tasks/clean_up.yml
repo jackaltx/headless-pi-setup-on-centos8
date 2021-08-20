@@ -1,0 +1,20 @@
+---
+
+- block:
+
+  - name: Recursively remove image download directory
+    ansible.builtin.file:
+      path: "{{ pi_image_dir }}"
+      state: absent
+
+  - name: Recursively remove boot image mount directory
+    ansible.builtin.file:
+     path: "{{ pi_image_boot_mount }}"
+     state: absent
+
+  - name: Recursively remove rootfs image mount directory
+    ansible.builtin.file:
+      path: "{{ pi_image_rootfs_mount }}"
+      state: absent
+
+  tags: [ 'never', 'cleanup']
