@@ -1,8 +1,5 @@
 ---
 
-#umount $PI_BOOT_MOUNT
-#umount $PI_OS_MOUNT
-
 - name: Unmount root partition
   ansible.posix.mount:
     path: "{{ pi_image_rootfs_mount }}"
@@ -40,3 +37,7 @@
     verbosity: 0
   when: kpartx_result is defined
 
+  tags:
+    - umount
+    - all
+ 

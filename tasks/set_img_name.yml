@@ -1,0 +1,40 @@
+---
+
+- name:  Get Image Name Block
+  block:
+
+  - ansible.builtin.find:
+      paths: "{{ pi_image_dir }}"
+      patterns: "*.img"
+      recurse: no
+      file_type: file
+    register: found_image
+    ignore_errors: True
+    #failed_when: found_image.matched !=1
+
+  - name: fail the play if the previous command did not succeed
+    fail:
+      msg: "Could not find disk image file!!!!"
+    when: found_image.matched !=1
+
+  - name: Image found
+    ansible.builtin.debug:
+      var: ((found_image.files)[0]).path
+      verbosity: 1
+    when: found_image.matched == 1
+
+  - name: pi_os_image fact set
+    set_fact:
+      pi_os_image: "{{ ((found_image.files)[0]).path }}"
+    when: found_image.matched == 1
+
+  - name: Print OS Image Name
+    ansible.builtin.debug:
+      var: pi_os_image
+    when: pi_os_image is defined
+
+  tags:
+    - mount
+    - umount
+    - all
+  
