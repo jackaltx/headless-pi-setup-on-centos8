@@ -3,6 +3,11 @@
 - include: download.yml
 - include: set_img_name.yml
 - include: mount_image.yml
+
+# the configuration part
 - include: enable_ssh.yml
+- include: cgroup.yml
+
+
 - include: umount_image.yml
 - include: clean_up.yml

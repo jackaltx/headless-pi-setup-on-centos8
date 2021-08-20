@@ -9,6 +9,10 @@ pi_image_setup_bt: false
 # setup wlan
 pi_image_setup_wlan: false
 
+# automate ssh 
+pi_image_setup_cgroup: true
+
+
 # image stuff
 
 pi_image_url: https://downloads.raspberrypi.org

@@ -9,3 +9,5 @@ Transform raspi os to a headless boot for PiFarm use
 1. https://www.raspberrypi.org/forums/viewtopic.php?t=140538
 1. https://github.com/gloveboxes/Raspberry-Pi-Kubernetes-Cluster
 1. https://blog.alexellis.io/test-drive-k3s-on-raspberry-pi/   (cgroup)
+1. https://github.com/lucasteligioridis/raspbernetes
+
