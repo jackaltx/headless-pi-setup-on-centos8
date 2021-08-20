@@ -1,18 +1,52 @@
 ---
 
-- name: "Create the image storage irectory if it does not exist"
+- name: Create the image storage directory if it does not exist
   ansible.builtin.file:
-    path: {{ pi_image_dir }}
+    path: "{{ pi_image_dir }}"
     state: directory
     mode: '0755'
 
 - name: Download pi image
   get_url:
-    url: "{{ pi_image_url}}/{{ pi_image_name }} "
-    dest: "{{ pi_image_dir }}"
+    url: "{{ pi_image_url}}/{{ pi_image_name }}"
+    dest: "{{ pi_image_dir }}/{{ pi_image_name }}.zip"
     mode: '0644'
 
 - name: Unarchive pi image
   ansible.builtin.unarchive:
     src: "{{ pi_image_dir }}/{{ pi_image_name }}.zip"
-    dest: /usr/local/bin
+    dest: "{{ pi_image_dir }}"
+  register: unzip_result
+
+- ansible.builtin.debug:
+    var: unzip_result.extract_results
+    verbosity: 1
+  when: unzip_result is defined
+  
+
+- ansible.builtin.find:
+    paths: "{{ pi_image_dir }}"
+    patterns: "*.img"
+    recurse: no
+    file_type: file
+  register: found_image
+
+# TODO throw error and abort if not found
+
+- ansible.builtin.debug:
+    var: ((found_image.files)[0]).path
+    verbosity: 1
+  when: found_image.matched == 1
+
+
+- set_fact:
+    pi_os_image: "{{ ((found_image.files)[0]).path }}"
+  when: found_image.matched == 1
+
+- ansible.builtin.debug:
+    var: pi_os_image
+  when: pi_os_image is defined
+
+
+
+

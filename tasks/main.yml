@@ -1,3 +1,6 @@
 ---
 
 - include: download.yml
+- include: mount_image.yml
+- include: enable_ssh.yml
+- include: umount_image.yml

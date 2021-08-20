@@ -3,12 +3,40 @@
 #umount $PI_BOOT_MOUNT
 #umount $PI_OS_MOUNT
 
-- name: Unmount the boot volume
+- name: Unmount root partition
   ansible.posix.mount:
-    path: {{ pi_image_boot_mount }}
-    state: unmounted
+    path: "{{ pi_image_rootfs_mount }}"
+    src: "/dev/mapper/loop0p2"
+    fstype: auto
+    state: absent
+  #become: yes
 
-- name: Unmount the rootfs volume
+- name: Unmount boot partition
   ansible.posix.mount:
-    path: {{ pi_image_rootfs_mount }}
-    state: unmounted
+    path: "{{ pi_image_boot_mount }}"
+    src: "/dev/mapper/loop0p1"
+    fstype: auto
+    state: absent
+  #become: yes
+
+- name: Remove the boot mount directory if it does not exist
+  ansible.builtin.file:
+    path: "{{ pi_image_boot_mount }}"
+    state: absent
+
+- name: Remove a rootfs if it does not exist
+  ansible.builtin.file:
+    path: "{{ pi_image_rootfs_mount }}"
+    state: absent
+
+- name: Remove the loop from the image file
+  ansible.builtin.shell:
+    cmd: "/usr/sbin/kpartx -d {{ pi_os_image }}"
+  register: kpartx_result
+  become: yes
+  
+- ansible.builtin.debug:
+    var: kpartx_result
+    verbosity: 0
+  when: kpartx_result is defined
+

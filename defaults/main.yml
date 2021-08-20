@@ -11,7 +11,7 @@ pi_image_setup_wlan: false
 
 # image stuff
 
-pi_image_url: https://downloads.raspberrypi.org/raspbian_lite_latest
+pi_image_url: https://downloads.raspberrypi.org
 pi_image_dir:  /tmp/pi_os
 pi_image_name: raspbian_lite_latest
 
