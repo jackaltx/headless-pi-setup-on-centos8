@@ -15,5 +15,5 @@ pi_image_url: https://downloads.raspberrypi.org
 pi_image_dir:  /tmp/pi_os
 pi_image_name: raspbian_lite_latest
 
-pi_image_boot_mount: /tmp/pi_image/boot
-pi_image_rootfs_mount:  /tmp/pi_image/rootfs
+pi_image_boot_mount: /tmp/pi_image_boot
+pi_image_rootfs_mount:  /tmp/pi_image_rootfs
