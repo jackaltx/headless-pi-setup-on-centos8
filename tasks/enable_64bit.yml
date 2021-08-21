@@ -1,0 +1,13 @@
+---
+
+- name: Enable 64 on Pi
+  ansible.builtin.lineinfile:
+    path: "{{ pi_image_boot_mount }}/cmdline.txt"
+    line: "arm_64bit=1"
+  when: pi_image_setup_64bit is defined and pi_image_setup_64bit == True
+  become: True
+  tags:
+    - configure
+    - all
+
+
