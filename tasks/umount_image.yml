@@ -34,7 +34,8 @@
     register: kpartx_result
     become: yes
     
-  - ansible.builtin.debug:
+  - name: kpartx results
+    ansible.builtin.debug:
       var: kpartx_result
       verbosity: 1
     when: kpartx_result is defined

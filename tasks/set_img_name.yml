@@ -3,7 +3,8 @@
 - name:  Get Image Name Block
   block:
 
-  - ansible.builtin.find:
+  - name: find the pi image
+    ansible.builtin.find:
       paths: "{{ pi_image_dir }}"
       patterns: "*.img"
       recurse: no

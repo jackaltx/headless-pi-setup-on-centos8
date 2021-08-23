@@ -5,7 +5,7 @@
     src: cmdline_cgroup.txt
     dest: "{{ pi_image_boot_mount }}/cmdline.txt"
     mode: '0644'
-  when: pi_image_setup_cgroup is defined and pi_image_setup_cgroup == True
+  when: pi_image_setup_cgroup is defined and pi_image_setup_cgroup is True
   become: True
   tags:
     - configure

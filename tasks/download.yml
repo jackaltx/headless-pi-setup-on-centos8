@@ -20,7 +20,8 @@
       dest: "{{ pi_image_dir }}"
     register: unzip_result
 
-  - ansible.builtin.debug:
+  - name: unzip results
+    ansible.builtin.debug:
       var: unzip_result.extract_results
       verbosity: 1
     when: unzip_result is defined
