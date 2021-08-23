@@ -6,8 +6,8 @@
 
 # the configuration part
 - include: enable_ssh.yml
-- include: enable_cgroup.yml
-- include: enable_64bit.yml
+#- include: enable_cgroup.yml
+#- include: enable_64bit.yml
 
 
 - include: umount_image.yml
