@@ -1,8 +1,0 @@
----
-
-- name: "Enable ssh"
-  ansible.builtin.file:
-    path: {{ pi_image_boot_mount }}
-    state: file
-    mode: '0755'
-  when: pi_image_setup_ssh is defined and pi_image_setup_ssh == True

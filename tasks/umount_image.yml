@@ -36,7 +36,7 @@
     
   - ansible.builtin.debug:
       var: kpartx_result
-      verbosity: 0
+      verbosity: 1
     when: kpartx_result is defined
 
   tags:
