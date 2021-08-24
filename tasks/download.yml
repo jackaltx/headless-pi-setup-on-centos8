@@ -9,8 +9,8 @@
       mode: '0755'
 
   - name: Download pi image
-    get_url:
-      url: "{{ pi_image_url}}/{{ pi_image_name }}"
+    ansible.builtin.get_url:
+      url: "{{ pi_image_url }}/{{ pi_image_name }}"
       dest: "{{ pi_image_dir }}/{{ pi_image_name }}.zip"
       mode: '0644'
 

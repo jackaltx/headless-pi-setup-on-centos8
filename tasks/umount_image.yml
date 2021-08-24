@@ -29,7 +29,7 @@
       state: absent
 
   - name: Remove the loop from the image file
-    ansible.builtin.shell:
+    ansible.builtin.command:
       cmd: "/usr/sbin/kpartx -d {{ pi_os_image }}"
     register: kpartx_result
     become: yes
